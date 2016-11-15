@@ -1,0 +1,38 @@
+<section ng-controller="UserViewController">
+<div class="row">
+    <div class="col-md-6">
+        <form name="myForm" ng-submit="save(myForm)" novalidate>
+            <legend>Add New User</legend>
+            <div class="form-group">
+                <label for="">First Name</label>
+                <input type="text" class="form-control" required ng-model="fname" name="fname">
+                <span style="color:red" ng-if="submitted && myForm.fname.$error.required">This field id required</span>
+            </div>
+            <div class="form-group">
+                <label for="">Last Name</label>
+                <input type="text" class="form-control" required ng-model="lname" name="lname">
+                <span style="color:red" ng-if="submitted && myForm.lname.$error.required">This field id required</span>
+            </div>
+            <div class="form-group">
+                <label for="">User Name</label>
+                <input type="text" class="form-control" required ng-model="username" name="username">
+                <span style="color:red" ng-if="submitted && myForm.username.$error.required">This field id required</span>
+            </div>
+            <div class="form-group">
+                <label for="">Password</label>
+                <input type="password" class="form-control" required ng-model="pass" name="pass">
+                <span style="color:red" ng-if="submitted && myForm.pass.$error.required">This field id required</span>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Save" />
+        </form>
+    </div>
+
+    <div class="col-md-6">
+        <app-color attr-color="green" attr-content="heading"></app-color>
+        <ul ng-if="dataSource.status" ng-repeat="user in dataSource.data">
+            <li>{{user.fname + " " + user.lname}} ({{user.username}}) <a href="javascript:void(0)" ng-click="delete(user.id)">Delete</a></li>
+        </ul>
+        <div style="color: red" ng-if="!result.status" ng-bind="result.message"></div>
+    </div>
+</div>
+</section>
