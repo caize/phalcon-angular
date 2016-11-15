@@ -7,15 +7,16 @@ define(['app'], function(app)
         '$scope', '$rootScope', '$cookieStore', 'Users',
 
         function($scope, $rootScope, $cookieStore, Users) {
-            $scope.dataSource = {};
             $rootScope.pageTitle = "List Users";
+            $scope.dataSource = {};
             $scope.heading = 'List Users';
 
             var refreshData = function() {
-                Users.get(function(res) {
+                Users.getList(function(res) {
                     $scope.dataSource = res;
                 });
-            };
+            }; // END refreshData
+
             refreshData();
 
             $scope.save = function(myForm) {
@@ -36,7 +37,7 @@ define(['app'], function(app)
                         $scope.result = res;
                     });
                 }
-            };
+            }; // END save
 
             $scope.delete = function(id) {
                 Users.delete({id:id}, function(res) {
@@ -44,7 +45,8 @@ define(['app'], function(app)
                         refreshData();
                     $scope.result = res;
                 });
-            };
-        }
+            }; // END delete
+
+        } // END function
     ]);
 });

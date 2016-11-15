@@ -30,33 +30,13 @@ class Module
             $eventManager = new \Phalcon\Events\Manager();
             $eventManager->attach('dispatch', new Acl('frontend'));
             $dispatcher->setDefaultNamespace("Multiple\Frontend\Controllers\\");
-            $eventManager->attach("dispatch:beforeException", function($event, $dispatcher, $exception) {
-                //Handle 404 exceptions
-                if ($exception instanceof \Phalcon\Mvc\Dispatcher\Exception) {
-                    $dispatcher->forward(array(
-                        'module' => 'frontend',
-                        'controller' => 'error',
-                        'action' => 'show404'
-                    ));
-                    return false;
-                }
-                //Handle other exceptions
-                $dispatcher->forward(array(
-                    'module' => 'frontend',
-                    'controller' => 'error',
-                    'action' => 'show503'
-                ));
-                return false;
-            });
-            $dispatcher->setEventsManager($eventManager);
             return $dispatcher;
         });
         //Registering the view component
         $di->set('view', function () {
             $view = new \Phalcon\Mvc\View();
             $view->setViewsDir(APP_PATH.'frontend/views/');
-            $view->setLayoutsDir(APP_PATH.'common/layouts/');
-            $view->setPartialsDir(APP_PATH.'common/partials/');
+            $view->setLayoutsDir(APP_PATH.'layouts/');
             return $view;
         });
         $di->set('db', function () {
@@ -64,7 +44,7 @@ class Module
                 "host" => "localhost",
                 "username" => "root",
                 "password" => "11111",
-                "dbname" => "dbphalconangular",
+                "dbname" => "dbslide",
                 "charset"=>"utf8",
                 "options" => array(
                     \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,

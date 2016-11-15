@@ -4,8 +4,7 @@ use Multiple\Frontend\Models\User;
 
 class IndexController extends ControllerBase
 {
-    public function indexAction()
-    {
+    public function indexAction() {
         $this->view->setTemplateAfter('frontend');
     }
 }

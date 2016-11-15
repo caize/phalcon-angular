@@ -1,12 +1,10 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-defined('APP_PATH') || define('APP_PATH', __DIR__.'/apps/');
 
 use Phalcon\Loader;
 use Phalcon\Mvc\Router;
 use Phalcon\DI\FactoryDefault;
 use Phalcon\Mvc\Application as BaseApplication;
+require 'defined.php';
 
 class Application extends BaseApplication
 {
@@ -16,7 +14,7 @@ class Application extends BaseApplication
         $loader = new Loader();
         $loader->registerDirs(
             array(
-                __DIR__ . '/../apps/library/'
+                APP_PATH.'library/'
             )
         )->register();
         $di->set('router', function(){
@@ -24,12 +22,6 @@ class Application extends BaseApplication
             $router->setDefaultModule("frontend");
             $router->setDefaultController('index');
             $router->setDefaultAction('index');
-            $router->add("/api/:module/:controller/:action",
-            [
-                "module"     => 1,
-                "controller" => 2,
-                "action"     => 3,
-            ]);
             $Routes = glob("apps/**/routes/*.php");
             foreach ($Routes as $key => $value){ require $value; }
             $router->removeExtraSlashes(true);
