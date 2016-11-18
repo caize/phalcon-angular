@@ -2,7 +2,7 @@
 namespace Multiple\Frontend\Controllers;
 use Phalcon\Mvc\Controller;
 
-class ControllerBase extends Controller
+class RestController extends Controller
 {
     public function JsonResutl($data) {
         $this->view->disable();
@@ -13,5 +13,12 @@ class ControllerBase extends Controller
 
     public function getPayload() {
         return json_decode(file_get_contents('php://input'), true);
+    }
+
+    public function requiredPost() {
+        if(!$this->request->isPost()) {
+            return $this->JsonResutl(array('status'=>false, 'message'=>'Request invalid!!!'));
+            die;
+        }
     }
 }

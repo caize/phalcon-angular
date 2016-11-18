@@ -2,7 +2,7 @@
 namespace Multiple\Frontend\Controllers;
 use Multiple\Frontend\Models\User;
 
-class UserController extends ControllerBase
+class UserController extends RestController
 {
     public function handleAction() {
         $this->view->disable();
@@ -20,25 +20,23 @@ class UserController extends ControllerBase
     }
 
     private function create() {
-        if($this->request->isPost()) {
-            $params = $this->getPayload();
-            $params['pass'] = $this->security->hash($params['pass']);
-            $result = User::insert($params);
-            if($result)
-                return $this->JsonResutl(array('status'=>true));
-            return $this->JsonResutl(array('status'=>false, 'message'=>'Insert new user failed!!!'));
-        }
-        return $this->JsonResutl(array('status'=>false, 'message'=>'Request invalid!!!'));
+        $this->requiredPost();
+
+        $params = $this->getPayload();
+        $params['pass'] = $this->security->hash($params['pass']);
+        $result = User::insert($params);
+        if($result)
+            return $this->JsonResutl(array('status'=>true));
+        return $this->JsonResutl(array('status'=>false, 'message'=>'Insert new user failed!!!'));
     }
 
     private function delete() {
-        if($this->request->isPost()) {
-            $params = $this->getPayload();
-            $result = User::findFirstById($params['id'])->delete();
-            if($result)
-                return $this->JsonResutl(array('status'=>true));
-            return $this->JsonResutl(array('status'=>false, 'message'=>'Delete failed!!!'));
-        }
-        return $this->JsonResutl(array('status'=>false, 'message'=>'Request invalid!!!'));
+        $this->requiredPost();
+
+        $params = $this->getPayload();
+        $result = User::findFirstById($params['id'])->delete();
+        if($result)
+            return $this->JsonResutl(array('status'=>true));
+        return $this->JsonResutl(array('status'=>false, 'message'=>'Delete failed!!!'));
     }
 }
