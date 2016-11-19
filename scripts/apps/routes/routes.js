@@ -4,20 +4,20 @@ define([
 function (user) {
     var defaultRoute = {
         '/': {
-            templateUrl: '/views/home.html',
+            templateUrl: 'scripts/apps/modules/index/views/home.html',
             dependencies: [
-                'apps/controllers/HomeViewController',
-                'apps/directives/app-color',
-                'apps/directives/app-color-v2',
-                'apps/services/stealmp3',
-                'apps/filters/trusted'
+                'apps/modules/index/controllers/HomeViewController',
+                'apps/modules/index/services/stealmp3',
+                'apps/common/directives/app-color',
+                'apps/common/directives/app-color-v2',
+                'apps/common/filters/trusted'
             ]
         },
         '/about/:person?': {
-            templateUrl: '/views/about.html',
+            templateUrl: 'scripts/apps/modules/index/views/about.html',
             dependencies: [
-                'apps/controllers/AboutViewController',
-                'apps/directives/app-color'
+                'apps/modules/index/controllers/AboutViewController',
+                'apps/common/directives/app-color'
             ]
         }
     };

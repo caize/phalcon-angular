@@ -1,6 +1,6 @@
 "use strict";
 
-define(['app', 'apps/directives/app-color'], function(app)
+define(['app', 'apps/common/directives/app-color'], function(app)
 {
     app.controller('Pages404Controller',
     [

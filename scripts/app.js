@@ -1,4 +1,4 @@
-define(['apps/routes/routes','apps/services/dependencyResolverFor'], function(config, dependencyResolverFor)
+define(['apps/routes/routes','apps/common/services/dependencyResolverFor'], function(config, dependencyResolverFor)
 {
     var app = angular.module('app', ['ngRoute', 'ngResource', 'ngSanitize', 'ngMessages', 'ngAnimate', 'ngCookies']);
 
@@ -32,8 +32,8 @@ define(['apps/routes/routes','apps/services/dependencyResolverFor'], function(co
             if(config.defaultRoutePath !== undefined)
             {
                 $routeProvider.otherwise({
-                    templateUrl: '/views/404.html',
-                    resolve:dependencyResolverFor(['apps/controllers/Pages404Controller'])
+                    templateUrl: 'scripts/apps/modules/index/views/404.html',
+                    resolve:dependencyResolverFor(['apps/modules/index/controllers/Pages404Controller'])
                 });
             }
         }

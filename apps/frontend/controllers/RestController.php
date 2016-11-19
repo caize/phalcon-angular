@@ -11,14 +11,18 @@ class RestController extends Controller
         $this->response->send();
     }
 
-    public function getPayload() {
-        return json_decode(file_get_contents('php://input'), true);
+    public function getPayload($name = null) {
+        $params = json_decode(file_get_contents('php://input'), true);
+        if($name)
+            return isset($params[$name]) ? $params[$name] : false;
+        return $params;
     }
 
-    public function requiredPost() {
-        if(!$this->request->isPost()) {
-            return $this->JsonResutl(array('status'=>false, 'message'=>'Request invalid!!!'));
-            die;
-        }
+    public function handle() {
+        $this->view->disable();
+        $action = $this->request->getQuery('action');
+        if(!$action)
+            return $this->JsonResutl(array('status'=>false, 'message'=>'Action is required!!!'));
+        $this->$action();
     }
 }

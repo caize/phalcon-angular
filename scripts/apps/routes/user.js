@@ -1,11 +1,11 @@
 define([], function () {
     return {
         '/user': {
-            templateUrl: '/views/user.html',
+            templateUrl: 'scripts/apps/modules/user/views/index.html',
             dependencies: [
-                'apps/controllers/UserViewController',
-                'apps/services/user',
-                'apps/directives/app-color'
+                'apps/modules/user/controllers/UserViewController',
+                'apps/modules/user/services/user',
+                'apps/common/directives/app-color'
             ]
         }
     }
