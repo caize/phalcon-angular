@@ -14,7 +14,7 @@ class Application extends BaseApplication
         $loader = new Loader();
         $loader->registerDirs(
             array(
-                APP_PATH.'library/'
+                APP_PATH.'librarys/'
             )
         )->register();
         $di->set('router', function(){
@@ -41,7 +41,7 @@ class Application extends BaseApplication
         $this->registerServices();
         $this->registerModules(array(
             'frontend' => array(
-                'className' => 'Multiple\Frontend\Module',
+                'className' => 'Anonymous\Frontend\Module',
                 'path' => 'apps/frontend/Module.php'
             )
         ));

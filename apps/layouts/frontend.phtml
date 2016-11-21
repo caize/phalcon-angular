@@ -49,6 +49,21 @@
         </div>
 
         <script type="text/javascript" src="scripts/lib/requirejs/require.js" data-main="scripts/bootstrap.js"></script>
+        <script type="text/javascript">
+        var body = document.getElementsByTagName('body')[0];
+        var delay = 1000;
+        var timeout = null;
+        body.setAttribute('style', 'overflow:hidden');
 
+        if(document.onwheel !== undefined) {
+            document.onwheel = function() {
+                body.setAttribute('style', 'overflow:auto');
+                clearTimeout(timeout);
+                timeout = setTimeout(function(){
+                    body.setAttribute('style', 'overflow:hidden');
+                },delay);
+            };
+        }
+        </script>
     </body>
 </html>

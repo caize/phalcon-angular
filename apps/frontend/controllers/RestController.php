@@ -1,5 +1,5 @@
 <?php
-namespace Multiple\Frontend\Controllers;
+namespace Anonymous\Frontend\Controllers;
 use Phalcon\Mvc\Controller;
 
 class RestController extends Controller

@@ -1,5 +1,5 @@
 <?php
-namespace Multiple\Frontend\Models;
+namespace Anonymous\Frontend\Models;
 
 class User extends ModelBase
 {

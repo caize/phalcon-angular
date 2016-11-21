@@ -1,6 +1,6 @@
 <?php
 
-namespace Multiple\Frontend;
+namespace Anonymous\Frontend;
 
 use Phalcon\Loader;
 use Phalcon\Mvc\Dispatcher;
@@ -13,8 +13,8 @@ class Module
     {
         $loader = new Loader();
         $loader->registerNamespaces(array(
-            'Multiple\Frontend\Controllers' => APP_PATH.'frontend/controllers/',
-            'Multiple\Frontend\Models' => APP_PATH.'frontend/models/',
+            'Anonymous\Frontend\Controllers' => APP_PATH.'frontend/controllers/',
+            'Anonymous\Frontend\Models' => APP_PATH.'frontend/models/',
         ));
         $loader->register();
     }
@@ -29,7 +29,7 @@ class Module
             //Attach a event listener to the dispatcher
             $eventManager = new \Phalcon\Events\Manager();
             $eventManager->attach('dispatch', new Acl('frontend'));
-            $dispatcher->setDefaultNamespace("Multiple\Frontend\Controllers\\");
+            $dispatcher->setDefaultNamespace("Anonymous\Frontend\Controllers\\");
             return $dispatcher;
         });
         //Registering the view component

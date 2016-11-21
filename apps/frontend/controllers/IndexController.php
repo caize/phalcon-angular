@@ -1,6 +1,6 @@
 <?php
-namespace Multiple\Frontend\Controllers;
-use Multiple\Frontend\Models\User;
+namespace Anonymous\Frontend\Controllers;
+use Anonymous\Frontend\Models\User;
 
 class IndexController extends RestController
 {
