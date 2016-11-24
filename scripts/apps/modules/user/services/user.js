@@ -9,6 +9,7 @@ define(['app'], function (app) {
             getList: {method: 'GET', params: {action:'getList'}},
             create:  {method: 'POST', params: {action:'create'}},
             delete:  {method: 'POST', params: {action:'delete'}},
+            findLike:  {method: 'POST', params: {action:'findLike'}},
         });
     });
 

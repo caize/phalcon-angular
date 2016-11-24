@@ -5,7 +5,8 @@ use Phalcon\Mvc\Router;
 use Phalcon\DI\FactoryDefault;
 use Phalcon\Mvc\Application as BaseApplication;
 require 'defined.php';
-
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: Content-Type');
 class Application extends BaseApplication
 {
     protected function registerServices()

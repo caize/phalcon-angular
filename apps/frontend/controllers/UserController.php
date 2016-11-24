@@ -8,6 +8,31 @@ class UserController extends RestController
         $this->handle();
     }
 
+    protected function checkExistUser() {
+        if(!$this->request->isPost())
+            return $this->JsonResutl(array('status'=>false, 'message'=>'Request invalid!!!'));
+
+        $keyword = $this->getPayload('keyword');
+        $data = User::findFirstByUsername($keyword);
+        if($data)
+            return $this->JsonResutl(array('status'=>true));
+        return $this->JsonResutl(array('status'=>false));
+    }
+
+    protected function findLike() {
+        if(!$this->request->isPost())
+            return $this->JsonResutl(array('status'=>false, 'message'=>'Request invalid!!!'));
+
+        $keyword = $this->getPayload('keyword');
+        $data = User::find(array(
+            'conditions' => 'username LIKE :value:',
+            'bind' => array('value' => '%' . $keyword . '%'),
+        ))->toArray();
+        if($data)
+            return $this->JsonResutl(array('status'=>true, 'data'=>$data));
+        return $this->JsonResutl(array('status'=>false, 'message'=>'Have no data!!!'));
+    }
+
     protected function getList() {
         $data = User::find()->toArray();
         if($data)

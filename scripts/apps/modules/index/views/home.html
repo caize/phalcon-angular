@@ -10,7 +10,7 @@
 
     <form role="form">
         <div class="form-group">
-            <input autofocus type="text" class="form-control" ng-keypress="$event.which === 13 && searchSong()" ng-model="namesong" required placeholder="tên bài hát, ca sỹ...">
+            <input autofocus type="text" class="form-control" ng-change="searchSong()" ng-keypress="$event.which === 13 && searchSong()" ng-model="namesong" required placeholder="tên bài hát, ca sỹ...">
         </div>
         <button type="button" class="btn btn-danger" ng-click="searchSong()">Tìm kiếm</button>
     </form>

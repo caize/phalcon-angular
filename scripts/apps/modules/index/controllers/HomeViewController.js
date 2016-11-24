@@ -7,7 +7,7 @@ define(['app'], function(app)
         '$scope', '$rootScope', 'getMusicID', 'getSong', '$cookieStore',
 
         function($scope, $rootScope, getMusicID, getSong, $cookieStore) {
-
+            var _promise;
             var title = "Mp3 get link";
             $rootScope.pageTitle = title;
             $scope.isShowResult = false;
@@ -29,12 +29,15 @@ define(['app'], function(app)
                     num:500,
                     query:$scope.namesong
                 };
-                getMusicID.get(params, function(res) {
+                if (_promise)
+                    _promise.$cancelRequest();
+                _promise = getMusicID.get(params);
+                _promise.$promise.then(function (res) {
                     if(res.result && res.data.length > 0) {
                         $scope.isShowResult = true;
                         $scope.listSong = res.data[1].song;
                     }
-                });
+                })
             }; //END function searchSong
 
             $scope.listenSong = function(id) {
