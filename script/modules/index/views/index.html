@@ -1,0 +1,88 @@
+<!-- container -->
+<div class="container">
+    <div class="row">
+        <!-- col-md-8 -->
+        <div class="col-md-8">
+            <!-- slide -->
+            <div class="panel panel-default">
+                <div class="panel-heading">Thông tin đến người mua bán trực tuyến</div>
+                <div class="panel-body">
+                    <div id="custom_carousel" class="carousel slide" data-ride="carousel" data-interval="10000">
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="top col-md-6 col-xs-12"><img style="max-height: 207px" src="public/images/free.jpeg" class="img-responsive"></div>
+                                        <div class="content col-md-6 col-xs-12">
+                                            <h2>Đăng tin miễn phí</h2>
+                                            <p>Mọi tin rao bán đều là miễn phí, bạn sẽ không cần phải trả bất kì khoản nào cho việc đăng tin.<br> Và đặc biệt kể cả thao tác đẩy tin lên đầu danh sách cũng là miễn phí. <br> Cứ sau 8 tiếng bạn sẽ được đẩy tin một lần, như vậy bạn không cần phải đăng đi đăng lại một sản phẩm mà bạn chưa bán được.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="top col-md-6 col-xs-12"><img style="max-height: 207px" src="public/images/chat.jpg" class="img-responsive"></div>
+                                        <div class="content col-md-6 col-xs-12">
+                                            <h2>Chat với người đăng tin</h2>
+                                            <p>Chúng tôi hỗ trợ người mua và người bán có thể trò chuyện trực tuyến thông qua hệ thống chat của chúng tôi. <br> Bạn sẽ không cần liên hệ trực tiếp để hỏi chi tiết về thông tin sản phẩm.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="top col-md-6 col-xs-12"><img style="max-height: 207px" src="public/images/voicecall.jpg" class="img-responsive"></div>
+                                        <div class="content col-md-6 col-xs-12">
+                                            <h2>Trò chuyện với người đăng tin</h2>
+                                            <p>Thật tuyệt vời là bạn không cần phải tốn tiền điện thoại để liên hệ đến người mua hoặc bán hàng. <br> Nếu người mua hoặc bán hàng đang trực tuyến bạn có thể gọi điện trực tiếp trên hệ thống của chúng tôi.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="controls draggable ui-widget-content col-md-12 col-xs-12">
+                            <ul class="nav ui-widget-header">
+                                <li data-target="#custom_carousel" data-slide-to="0" class="active"><a href="#"><img src="public/images/free.jpeg"><small>Miễn phí</small></a></li>
+                                <li data-target="#custom_carousel" data-slide-to="1"><a href="#"><img src="public/images/chat.jpg"><small>Chat online</small></a></li>
+                                <li data-target="#custom_carousel" data-slide-to="2"><a href="#"><img src="public/images/voicecall.jpg"><small>Gọi trực tuyến</small></a></li>
+                            </ul>
+                        </div>
+                    </div><!-- End Carousel -->
+                </div>
+            </div><!-- slide -->
+        </div><!-- col-md-8 -->
+        <!-- col-md-4 -->
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Hãy chọn khu vực bạn muốn tìm mua hàng giá tốt</div>
+                <div class="panel-body">
+                    <div class="input-group">
+                        <input type="text" class="input" />
+                        <span class="input-group-addon glyphicon glyphicon-search"></span>
+                    </div>
+                    <br>
+                    <div class="scrollbar-dynamic scrollbar-top-province" data-jquery-scrollbar="jqueryScrollbarOptions">
+                        <ul class="list-group">
+                            <a ng-repeat="item in province" class="list-group-item" href="list.html"><li>{{item.name}}<span class="btn-arrow">&raquo;</span></li></a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div><!-- / col-md-4 -->
+    </div><!-- / row -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="info_content">
+                <span class="note glyphicon glyphicon-hand-right"></span> Với nhu cầu buôn bán của tất cả mọi người trên khắp cả nước, đội ngũ chúng tôi đã cố gắng xây dựng hệ thống buôn bán trực tuyến <br>
+                hỗ trợ tới 63 tỉnh thành và các quận huyện trong khu vực. Để tất cả mọi người dù ở bất kì nơi đâu cũng có thể mua hoặc bán sản phẩm của mình với giá tốt nhất.<br><br>
+                <span class="note glyphicon glyphicon-hand-right"></span> Với hệ thống buôn bán thời gian thực, chúng tôi muốn đem đến dịch vụ tốt nhất để phục vụ người dùng, và đặc biệt mọi dịch vụ của chúng tôi <br>
+                đều hoàn toàn miễn phí.
+            </div>
+        </div>
+    </div>
+
+</div><!-- / container -->

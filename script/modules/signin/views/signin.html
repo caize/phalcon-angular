@@ -1,0 +1,37 @@
+<div class="container ">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="card card-container">
+        <img id="profile-img" class="profile-img-card" src="public/images/avatar_2x.png" />
+        <p class="profile-name-card"></p>
+        <form class="form-signin" name="login_form" novalidate role="form" autocomplete="off" ng-submit="submit()">
+            <input required
+                    type="email"
+                    class="input-login"
+                    ng-class="{'error-input':!login_form.username.$valid && submitted}"
+                    placeholder="Tài khoản"
+                    name="username"
+                    autofocus
+                    ng-model="username">
+            <ng-messages for="login_form.username.$error" ng-if="submitted">
+                <span class="error-text" ng-message="required">Email không được để trống</span>
+                <span class="error-text" ng-message="email">Email không hợp lệ</span>
+            </ng-messages>
+            <input type="password"
+                    ng-model="password"
+                    name="password"
+                    class="input-login"
+                    ng-class="{'error-input':!login_form.password.$valid && submitted}"
+                    placeholder="Mật khẩu"
+                    required>
+            <ng-messages for="login_form.password.$error" ng-if="submitted">
+                <span class="error-text" ng-message="required">Mật khẩu không được để trống</span>
+            </ng-messages>
+            <button class="btn bg-gray" type="submit">Đăng nhập</button>
+            <span class="error-text" ng-if="error_login">{{error_login}}</span>
+        </form>
+        <a href="">Quên mật khẩu?</a>
+    </div>
+    </div>
+    <div class="col-md-4"></div>
+</div>

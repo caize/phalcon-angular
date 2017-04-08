@@ -7,6 +7,7 @@ use Phalcon\Mvc\Application as BaseApplication;
 require 'defined.php';
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: Content-Type');
+
 class Application extends BaseApplication
 {
     protected function registerServices()
@@ -23,8 +24,8 @@ class Application extends BaseApplication
             $router->setDefaultModule("frontend");
             $router->setDefaultController('index');
             $router->setDefaultAction('index');
-            $Routes = glob("apps/**/routes/*.php");
-            foreach ($Routes as $key => $value){ require $value; }
+            $routes = glob("app/modules/**/routes/*.php");
+            foreach ($routes as $key => $value) require $value;
             $router->removeExtraSlashes(true);
             $router->handle();
             return $router;
@@ -43,11 +44,16 @@ class Application extends BaseApplication
         $this->registerModules(array(
             'frontend' => array(
                 'className' => 'Anonymous\Frontend\Module',
-                'path' => 'apps/frontend/Module.php'
+                'path' => 'app/modules/frontend/Module.php'
             )
         ));
         echo $this->handle()->getContent();
     }
 }
-$application = new Application();
-$application->main();
+
+try {
+    $application = new Application();
+    $application->main();
+} catch(\Exception $e) {
+    echo $e->getMessage();
+}

@@ -1,0 +1,81 @@
+<div class="row">
+    <div class="col-md-4">
+        <form role="form">
+            <legend>Search</legend>
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="keyword" ng-keypress="$event.which === 13 && changeKeyword()" placeholder="Enter keyword...">
+            </div>
+        </form>
+    </div>
+</div>
+<div ng-transclude></div>
+<table class="table table-hover" id="gridData">
+    <thead>
+        <tr>
+            <th ng-repeat="item in settings.column">{{ item.title }}</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in data.data">
+            <!-- type: image -->
+            <!-- size: rounded | circle | thumbnail -->
+            <td ng-repeat="col in settings.column">
+                <!-- for avatar -->
+                <img ng-if="col.type !== undefined && col.type === 'image' && item[col.column]" src="{{CONSTANT.HOST_AVATAR}}{{item[col.column]}}" class="img-avatar img-{{col.size}}" alt="avatar">
+                <img ng-if="col.type !== undefined && col.type === 'image' && !item[col.column]" src="/assert/images/avatar.png" class="img-avatar img-{{col.size}}" alt="avatar">
+                <!-- for members -->
+                <span ng-if="col.type !== undefined && col.type === 'lock'">
+                    <span ng-if="item[col.column] === 'locked'" class="error-status">Locked</span>
+                    <span ng-if="item[col.column] === 'available'" class="success-status">Available</span>
+                </span>
+                <!-- for users -->
+                <span ng-if="col.type === undefined && col.column === 'level'">
+                    <span ng-if="item[col.column] === 'superadmin'"><span class="label label-default">{{ item[col.column] }}</span></span>
+                    <span ng-if="item[col.column] === 'admin'"><span class="label label-danger">{{ item[col.column] }}</span></span>
+                    <span ng-if="item[col.column] === 'member'">{{ item[col.column] }}</span>
+                </span>
+                <!-- default -->
+                <span ng-if="col.type === undefined && col.column !== 'level'">{{ item[col.column] }}</span>
+            </td>
+            <td>
+                <span class="osx pointer" ng-click="updateAction({id:item.id})">Adjust</span>
+                <span class="osx pointer" ng-if="stateName === 'province'" ng-click="rankAction({id:item.id})">Change rank district</span>
+                <span class="osx pointer" ng-if="stateName === 'category'" ng-click="rankAction({id:item.id})">Change rank sub category</span>
+                <span class="osx pointer" ng-if="item.role !== '1'" ng-click="deleteAction({id:item.id})">Delete</span>
+            </td>
+        </tr>
+        <tr class="nodata" ng-if="!data.data.length"><td colspan="{{settings.column.length + 1}}" align="center">Have no data</td></tr>
+    </tbody>
+</table>
+<hr>
+<div ng-show="data.last_page">
+    <div class="row">
+        <div class="col-md-2">
+            <span class="label label-default">Page {{data.current_page}}</span>&nbsp;on&nbsp;<span class="label label-default">Total {{data.last_page}}</span>
+        </div>
+        <div class="col-md-8">
+            <span>Number entries</span>
+            <select ng-model="limit" ng-change="changeLimit()">
+                <option ng-repeat="option in data_limit" value="{{option.key}}">{{option.value}}</option>
+            </select>
+            <span> - showing {{data.data.length}}</span>
+        </div>
+    </div>
+</div>
+
+<!-- start paging -->
+<center>
+    <h2 ng-if="data.permission !== undefined && data.permission === false">{{data.message}}</h2>
+    <nav aria-label="...">
+        <ul class="pager">
+            <li class="previous" ng-if="!(1 === data.current_page) && data.data.length > 0">
+                <a href="javascript:;" ng-click="changePage(data.current_page - 1)"><span aria-hidden="true">&larr;</span> Older</a>
+            </li>
+
+            <li class="next" ng-if="!(data.last_page === data.current_page) && data.data.length > 0">
+                <a href="javascript:;" ng-click="changePage(data.current_page + 1)">Newer <span aria-hidden="true">&rarr;</span></a>
+            </li>
+         </ul>
+    </nav>
+</center>

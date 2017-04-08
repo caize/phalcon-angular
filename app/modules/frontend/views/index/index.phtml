@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title class="ng-bind:pageTitle"></title>
+        <base href="/">
+        <link rel="shortcut icon" type="image/x-icon" href="/public/images/favicon.png" />
+        <?php $this->assets->outputCss(); ?>
+    </head>
+    <body ng-cloak>
+        <div ui-view="header"></div>
+        <div ui-view="content"></div>
+        <div ui-view="footer"></div>
+        <?php $this->assets->outputJs(); ?>
+        <script type="text/javascript" src="/script/libs/requirejs/require.js" data-main="/script/bootstrap.js"></script>
+    </body>
+</html>

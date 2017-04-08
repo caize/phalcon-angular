@@ -1,0 +1,3 @@
+<select ng-model="ngModel" class="{{setClass}}" ng-change="onChange()">
+    <option ng-repeat="item in data" value="{{ item[key] }}" ng-selected="ngModel == item[key]">{{ item[value] }}</option>
+</select>

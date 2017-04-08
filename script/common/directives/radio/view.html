@@ -1,0 +1,10 @@
+<div class="radio">
+    <label ng-repeat="item in data">
+        <input type="radio"
+                name="radio-directive"
+                ng-model="$parent.ngModel"
+                ng-value="item[key]"
+                ng-change="onChange()">
+        {{ item[value] }} &nbsp;
+    </label>
+</div>
