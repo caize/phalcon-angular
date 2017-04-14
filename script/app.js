@@ -101,6 +101,11 @@ define([
 
     app.config(['$cookiesProvider', '$httpProvider', function ($cookiesProvider, $httpProvider) {
         $cookiesProvider.defaults.domain = document.domain;
+        $httpProvider.useApplyAsync(1000);
+    }]);
+
+    app.config(['$compileProvider', function($compileProvider){
+        $compileProvider.debugInfoEnabled(false);
     }]);
 
     app.run(function($rootScope, $cookieStore, $http, $location, CONSTANT, $state, $stateParams) {
